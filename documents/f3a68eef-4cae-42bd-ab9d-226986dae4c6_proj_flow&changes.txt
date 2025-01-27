@@ -1,0 +1,16 @@
+Flow for gdrive and folder syncing:
+
+> when the gDrive is connected the creds are saved into db and sent to response to frontend.
+> from the front-end using that creds(token, refersh token) folder id is extracted and sent to backend also it will hit the
+  createknowledgebase endpoint craete a knowledge base and folder id it will be stored in Knowledgebase table. 
+
+in the tasks.py we are only require the UpdateKnowledgebase functionality:
+
+changes in previous code:
+added a field googledrive_folder_id to Knowledgebase table
+updating googledrive_folder_id in createKnowledgeBase endpoint.
+
+
+
+
+

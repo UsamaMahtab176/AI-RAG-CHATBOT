@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "b6295958-d34c-47cf-9565-8b58900d5d74",
+		"name": "ragsaas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29059614"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "signup/user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Abdulqadoos12\",\r\n    \"email\": \"aqadoos411@gmail.com\",\r\n    \"password\": \"Abdulqadoos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/signup/user/"
+					},
+					"response": []
+				},
+				{
+					"name": "verify-email-otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"email\": \"engrharis0@gmail.com\",\n    \"otp_code\": \"282380\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/verify-email/"
+					},
+					"response": []
+				},
+				{
+					"name": "login/user/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"aqadoos411@gmail.com\",\n    \"password\": \"Abdulqadoos\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/login/user/"
+					},
+					"response": []
+				},
+				{
+					"name": "login/superadmin/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"superadmin@example.com\",  \n    \"password\": \"superadmin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/login/super-admin/"
+					},
+					"response": []
+				},
+				{
+					"name": "signup/user-admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"haris\",\n    \"email\": \"engrharis0@gmail.com\",\n    \"password\": \"haris\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/signup/useradmin/"
+					},
+					"response": []
+				},
+				{
+					"name": "login/useradmin/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"engrharis0@gmail.com\",\n    \"password\": \"haris\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/login/user-admin/"
+					},
+					"response": []
+				},
+				{
+					"name": "passwrodresetrequest/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/password-reset/request/"
+					},
+					"response": []
+				},
+				{
+					"name": "passwrodresetconfirmotp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"engrharis0@gmail.com\",\n        \"otp_code\" :\"298893\",\n        \"new_password\" : \"haris12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/password-reset/confirm/"
+					},
+					"response": []
+				},
+				{
+					"name": "passwordchange",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/change-password/"
+					},
+					"response": []
+				},
+				{
+					"name": "refreshaccesstoken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"your_refresh_token\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/token/refresh/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "profileinfoupdate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0MjcxNTI3LCJpYXQiOjE3MjQyNzEyMjcsImp0aSI6IjBkNWMxODMzZDQ1NjQ5MTc4N2QwMTFjYmFmZGNiMzEzIiwidXNlcl9pZCI6MX0.yTNMujK-BAPYdCicY9ltdyklf9ct199UdxaVpCOEuCA"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "Haris",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "engrharis0@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "+923165828907",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "Pakistan",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Madni Colony Kamra",
+									"type": "text"
+								},
+								{
+									"key": "profile_photo",
+									"type": "file",
+									"src": "/home/haris/Desktop/pf.png"
+								}
+							]
+						},
+						"url": "http://127.0.0.1:8000/api/profile/"
+					},
+					"response": []
+				},
+				{
+					"name": "serversidelogout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNDM1NDY3OCwiaWF0IjoxNzI0MjY4Mjc4LCJqdGkiOiI3ZWM1NjM0ZWRhODI0NWNjYWI3YTUyNDAxNzI1ODM4NCIsInVzZXJfaWQiOjF9.g9avaXqh7BwT0TfkxVQdpQ5HDiZvMKC74qMphJ-VpcE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/logout/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

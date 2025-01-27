@@ -1,0 +1,5 @@
+celery -A ragsaas worker --loglevel=info --pool=solo
+
+celery -A ragsaas beat --loglevel=info
+
+aws EC2instance

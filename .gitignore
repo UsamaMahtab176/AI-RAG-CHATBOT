@@ -1,0 +1,4 @@
+*env
+new
+.env
+clientadmin/credentials.json

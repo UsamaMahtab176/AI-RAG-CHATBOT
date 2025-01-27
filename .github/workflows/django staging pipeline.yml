@@ -1,0 +1,79 @@
+name: Django staging CICD
+
+on:
+  push:
+    branches: [ "staging" ]
+  pull_request:
+    branches: [ "staging" ]
+
+jobs:
+  build:
+    runs-on: [self-hosted, staging-runner]
+    environment: staging
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: ["3.10"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Update and Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install software-properties-common -y
+          sudo apt install python3.10 python3.10-venv python3.10-dev -y
+          python3.10 --version
+
+      - name: Set up Virtual Environment
+        run: |
+          python3.10 -m venv venv
+          source venv/bin/activate
+
+      - name: Install OS dependencies for mysqlclient
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-libmysqlclient-dev build-essential pkg-config  # Add pkg-config here
+
+      - name: Install Python Dependencies
+        run: |
+          source venv/bin/activate
+          pip install -r requirements.txt
+          pip install gunicorn
+          pip install django-environ
+          pip install dj-database-url
+          pip install firebase-admin
+          pip install fcm-django
+          pip install boto3
+
+      - name: Create .env file
+        run: |
+          cat << EOF > .env
+          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} 
+          PINECONE_API_KEY=${{ secrets.PINECONE_API_KEY }}
+          EOF
+
+      - name: Debug Systemd Commands
+        run: |
+         sudo systemctl daemon-reload 
+         sudo systemctl start rag.service 
+         sudo systemctl restart rag.service 
+         sudo systemctl status rag.service 
+
+
+  deploy: 
+    runs-on: [self-hosted, staging-runner]
+    environment: staging
+    needs: build
+    steps:
+    - name: Nginx Configuration
+      run: |
+        sudo nginx -t
+        sudo systemctl status nginx
+        sudo systemctl restart nginx
